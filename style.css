@@ -1,0 +1,119 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(-45deg, #ff0000, #0000ff, #1a1a1a, #0044cc);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+    color: white;
+    text-align: center;
+}
+
+/* Animated Background */
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+header {
+    padding: 50px;
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+section {
+    margin: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+section:hover {
+    transform: scale(1.05);
+}
+
+/* Skills Section */
+.skills ul {
+    list-style: none;
+    padding: 0;
+}
+
+.skills li {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.skills li:hover {
+    background: #ffcc00;
+    color: black;
+}
+
+/* Projects */
+.projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.project-card {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    width: 300px;
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    background: #ffcc00;
+    color: black;
+    transform: translateY(-5px);
+}
+
+/* Contact Button */
+.contact-btn {
+    background: #ffcc00;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1rem;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.contact-btn:hover {
+    background: #ff6600;
+}
+
+/* Footer */
+footer {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
