@@ -1,22 +1,18 @@
-// Scroll Animation
-document.addEventListener("DOMContentLoaded", function () {
-    const sections = document.querySelectorAll("section");
+document.addEventListener("DOMContentLoaded", () => {
+    const navLinks = document.querySelectorAll("nav a");
 
-    function fadeInOnScroll() {
-        sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 100) {
-                section.style.opacity = "1";
-                section.style.transform = "translateY(0)";
-            }
+    navLinks.forEach(link => {
+        link.addEventListener("click", smoothScroll);
+    });
+
+    function smoothScroll(event) {
+        event.preventDefault();
+        const targetId = this.getAttribute("href").substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        window.scrollTo({
+            top: targetElement.offsetTop - 50,
+            behavior: "smooth"
         });
     }
-
-    document.addEventListener("scroll", fadeInOnScroll);
-    fadeInOnScroll(); 
-});
-
-// Contact Button Click
-document.querySelector(".contact-btn").addEventListener("click", function () {
-    alert("Contact me via Email or Discord!");
 });
