@@ -1,5 +1,5 @@
-/* Reset & Font */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+/* Reset & Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
 
 * {
     margin: 0;
@@ -8,11 +8,11 @@
     font-family: 'Orbitron', sans-serif;
 }
 
-/* Animated Particle Background */
+/* Animated Cyberpunk Background */
 body {
     position: relative;
     overflow: hidden;
-    background: black;
+    background: radial-gradient(circle, #01012b, #000);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,13 +30,13 @@ body {
     z-index: -1;
 }
 
-/* Glowing Cyberpunk Header */
+/* Futuristic Glowing Header */
 h1 {
     color: cyan;
     font-size: 3rem;
     text-shadow: 0 0 15px cyan, 0 0 40px blue;
     margin-bottom: 30px;
-    animation: flicker 2s infinite alternate;
+    animation: glow-pulse 2s infinite alternate;
 }
 
 /* Cyberpunk Text Effect */
@@ -47,55 +47,40 @@ h1 {
     animation: neonText 3s infinite alternate;
 }
 
-/* Glowing 3D Buttons */
+/* 3D Floating Buttons */
 .buttons {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
 }
 
 .btn {
     text-decoration: none;
     font-size: 1.5rem;
     color: white;
-    padding: 15px 30px;
-    border-radius: 50px;
-    width: 280px;
+    padding: 18px 35px;
+    border-radius: 30px;
+    width: 300px;
     text-align: center;
     font-weight: bold;
-    background: linear-gradient(90deg, #00d4ff, #090979, #03009e);
+    letter-spacing: 2px;
+    background: linear-gradient(45deg, #00d4ff, #090979, #03009e);
     transition: all 0.3s ease-in-out;
-    box-shadow: 0px 0px 15px cyan;
+    box-shadow: 0px 0px 20px cyan;
     position: relative;
     overflow: hidden;
-    transform: perspective(100px) rotateX(5deg);
+    border: 2px solid cyan;
+    transform: perspective(500px) rotateX(10deg);
 }
 
-/* Glowing Button Pulse Effect */
-.btn::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: linear-gradient(90deg, #090979, #03009e, #00d4ff);
-    z-index: -1;
-    filter: blur(25px);
-    opacity: 0.6;
-}
-
-/* Hover & Click Animations */
+/* Hover Effect: Floating & Glowing */
 .btn:hover {
-    transform: scale(1.1) rotateX(0deg);
-    box-shadow: 0px 0px 30px cyan, 0px 0px 50px blue;
+    transform: scale(1.15) rotateX(0deg);
+    box-shadow: 0px 0px 35px cyan, 0px 0px 50px blue;
+    text-shadow: 0 0 10px cyan;
 }
 
-.btn:active {
-    transform: scale(0.9) rotateX(10deg);
-}
-
-/* Cyberpunk Footer */
+/* Futuristic Footer */
 footer {
     position: absolute;
     bottom: 10px;
@@ -104,20 +89,19 @@ footer {
     text-shadow: 0 0 10px cyan;
 }
 
-/* Glowing Name Effect */
+/* Glowing Name */
 .name {
     font-weight: bold;
     color: cyan;
     animation: neonText 1.5s infinite alternate;
 }
 
-/* Flicker Effect */
-@keyframes flicker {
-    0% { opacity: 0.7; }
-    100% { opacity: 1; }
+/* Neon Glows & Animations */
+@keyframes glow-pulse {
+    0% { text-shadow: 0 0 10px cyan; }
+    100% { text-shadow: 0 0 30px cyan, 0 0 50px blue; }
 }
 
-/* Neon Text Glow */
 @keyframes neonText {
     0% { text-shadow: 0 0 10px cyan; }
     100% { text-shadow: 0 0 50px cyan, 0 0 80px blue; }
