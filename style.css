@@ -1,27 +1,60 @@
+/* Remove margins & paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Make video fullscreen */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    height: 100vh;
+    overflow: hidden; /* Prevent scrolling */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Background Video */
+.bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* Ensures full-screen coverage */
+    z-index: -1;
+}
+
+/* Button Styling */
 button {
     display: block;
-    width: 250px;
-    margin: 10px auto;
+    width: 280px;
+    margin: 15px auto;
     padding: 15px;
     font-size: 18px;
     font-weight: bold;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 8px;
+    color: white;
     background: linear-gradient(270deg, #8e44ad, #2980b9);
     background-size: 400% 400%;
-    color: white;
-    transition: 0.3s;
+    transition: 0.3s ease;
     animation: gradientAnimation 3s ease infinite;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Gradient Animation */
 @keyframes gradientAnimation {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
+/* Button Hover Effect */
 button:hover {
-    opacity: 0.8;
-    transform: scale(1.05);
+    opacity: 0.9;
+    transform: scale(1.08);
 }
