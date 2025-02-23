@@ -33,7 +33,7 @@ h1 {
     color: cyan;
     font-size: 3rem;
     text-shadow: 0 0 15px cyan, 0 0 40px blue;
-    margin-bottom: 40px;
+    margin-bottom: 80px; /* Increased space below heading */
     animation: glow-pulse 2s infinite alternate;
 }
 
@@ -51,28 +51,28 @@ h1 {
     gap: 40px; /* Increased button spacing */
 }
 
-/* Futuristic Button Style */
+/* Futuristic Rectangular Button Style */
 .btn {
     text-decoration: none;
     font-size: 1.5rem;
     color: white;
     padding: 20px 40px;
-    border-radius: 50px; /* Improved Shape */
-    width: 320px;
+    border-radius: 0; /* Sharp Rectangular Shape */
+    width: 350px;
     text-align: center;
     font-weight: bold;
     letter-spacing: 2px;
     background: linear-gradient(45deg, #00d4ff, #090979, #03009e);
     transition: all 0.3s ease-in-out;
     box-shadow: 0px 0px 20px cyan;
-    border: 2px solid cyan;
+    border: 3px solid cyan;
     position: relative;
     overflow: hidden;
 }
 
 /* Glowing & Floating Effect */
 .btn:hover {
-    transform: scale(1.1) translateY(-5px);
+    transform: scale(1.05) translateY(-5px);
     box-shadow: 0px 0px 40px cyan, 0px 0px 60px blue;
     text-shadow: 0 0 10px cyan;
 }
@@ -80,7 +80,7 @@ h1 {
 /* Footer with More Spacing */
 footer {
     position: absolute;
-    bottom: 40px; /* Increased spacing from buttons */
+    bottom: 50px; /* Increased spacing from buttons */
     color: white;
     font-size: 1rem;
     text-shadow: 0 0 10px cyan;
