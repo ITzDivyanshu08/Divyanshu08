@@ -1,4 +1,4 @@
-// Particle Background Effect
+// Particle Background
 const canvas = document.getElementById("particleCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -35,17 +35,19 @@ class Particle {
     }
 }
 
+// Initialize Particles
 function initParticles() {
-    for (let i = 0; i < 50; i++) {
-        let size = Math.random() * 5 + 2;
+    for (let i = 0; i < 60; i++) {
+        let size = Math.random() * 4 + 1;
         let x = Math.random() * canvas.width;
         let y = Math.random() * canvas.height;
-        let speedX = (Math.random() - 0.5) * 2;
-        let speedY = (Math.random() - 0.5) * 2;
+        let speedX = (Math.random() - 0.5) * 1.5;
+        let speedY = (Math.random() - 0.5) * 1.5;
         particles.push(new Particle(x, y, size, speedX, speedY));
     }
 }
 
+// Animate Particles
 function animateParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach(particle => {
@@ -54,6 +56,14 @@ function animateParticles() {
     });
     requestAnimationFrame(animateParticles);
 }
+
+// Resize Canvas on Window Resize
+window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    particles.length = 0;
+    initParticles();
+});
 
 initParticles();
 animateParticles();
