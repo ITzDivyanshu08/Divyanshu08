@@ -1,79 +1,61 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-body {
+* {
     margin: 0;
     padding: 0;
-    height: 100vh;
-    background: radial-gradient(circle, #000428, #004e92);
-    overflow: hidden;
+    box-sizing: border-box;
     font-family: 'Orbitron', sans-serif;
-    color: #ffffff;
+}
+
+body {
+    background: radial-gradient(circle, #000428, #004e92);
+    color: #fff;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     text-align: center;
     text-transform: uppercase;
-    background: linear-gradient(90deg, #00eaff, #0077ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 20px #00eaff;
-}
-
-.button-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-    margin-top: 20px;
+    letter-spacing: 4px;
+    text-shadow: 0 0 10px #3a0ca3, 0 0 20px #7209b7;
+    margin-bottom: 40px;
 }
 
 button {
-    width: 250px;
+    width: 260px;
     padding: 15px;
+    margin: 15px 0;
     font-size: 1.2rem;
     font-weight: bold;
-    border: none;
     text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 10px;
-    background: linear-gradient(90deg, #003b8b, #0077ff);
-    color: #ffffff;
-    box-shadow: 0 0 15px #00eaff;
+    background: linear-gradient(90deg, #3a0ca3, #240046);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #7209b7;
     transition: all 0.3s ease-in-out;
-    position: relative;
-    overflow: hidden;
-}
-
-button::before {
-    content: "";
-    position: absolute;
-    width: 120%;
-    height: 120%;
-    background: radial-gradient(circle, rgba(0, 255, 255, 0.4) 0%, rgba(0, 255, 255, 0) 80%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.3s ease-out;
-}
-
-button:hover::before {
-    transform: translate(-50%, -50%) scale(2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
 }
 
 button:hover {
-    box-shadow: 0 0 25px #00eaff;
     transform: scale(1.05);
+    box-shadow: 0 0 25px #7209b7;
 }
 
 footer {
     position: absolute;
     bottom: 10px;
     font-size: 1rem;
-    color: #00eaff;
-    text-shadow: 0 0 10px #0077ff;
+    color: #fff;
+    text-shadow: 0 0 10px #3a0ca3;
 }
