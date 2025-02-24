@@ -1,4 +1,3 @@
-// Particle Background
 const canvas = document.getElementById("particleCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -25,8 +24,8 @@ class Particle {
     }
 
     draw() {
-        ctx.fillStyle = "rgba(0, 255, 255, 0.8)";
-        ctx.shadowBlur = 20;
+        ctx.fillStyle = "rgba(0, 255, 255, 0.9)";
+        ctx.shadowBlur = 30;
         ctx.shadowColor = "cyan";
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -37,12 +36,12 @@ class Particle {
 
 // Initialize Particles
 function initParticles() {
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 80; i++) {
         let size = Math.random() * 4 + 1;
         let x = Math.random() * canvas.width;
         let y = Math.random() * canvas.height;
-        let speedX = (Math.random() - 0.5) * 1.5;
-        let speedY = (Math.random() - 0.5) * 1.5;
+        let speedX = (Math.random() - 0.5) * 2;
+        let speedY = (Math.random() - 0.5) * 2;
         particles.push(new Particle(x, y, size, speedX, speedY));
     }
 }
@@ -57,7 +56,7 @@ function animateParticles() {
     requestAnimationFrame(animateParticles);
 }
 
-// Resize Canvas on Window Resize
+// Resize Canvas
 window.addEventListener("resize", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
