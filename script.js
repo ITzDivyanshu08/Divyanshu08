@@ -1,94 +1,72 @@
-const canvas = document.createElement('canvas');
-document.body.appendChild(canvas);
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("starCanvas");
+const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let balls = [];
-let butterflies = [];
+let stars = [];
+const numStars = 200;
 
-function createBalls() {
-    for (let i = 0; i < 30; i++) {
-        balls.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            dx: (Math.random() - 0.5) * 3,
-            dy: (Math.random() - 0.5) * 3,
-            radius: 5 + Math.random() * 5
-        });
+class Star {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.radius = Math.random() * 2;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "#00c3ff";
+        ctx.fill();
+    }
+
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
     }
 }
 
-function createButterflies() {
-    for (let i = 0; i < 4; i++) {
-        butterflies.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            path: [],
-            index: 0,
-            color: `hsl(${Math.random() * 360}, 100%, 60%)`
-        });
-
-        for (let j = 0; j < 50; j++) {
-            butterflies[i].path.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height
-            });
-        }
-    }
+for (let i = 0; i < numStars; i++) {
+    stars.push(new Star());
 }
 
-function update() {
+function animateStars() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    balls.forEach((ball, i) => {
-        ball.x += ball.dx;
-        ball.y += ball.dy;
-
-        if (ball.x - ball.radius < 0 || ball.x + ball.radius > canvas.width) ball.dx *= -1;
-        if (ball.y - ball.radius < 0 || ball.y + ball.radius > canvas.height) ball.dy *= -1;
-
-        for (let j = i + 1; j < balls.length; j++) {
-            let dx = balls[j].x - ball.x;
-            let dy = balls[j].y - ball.y;
-            let distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance < ball.radius + balls[j].radius) {
-                let mergedRadius = Math.min(ball.radius + balls[j].radius, 30);
-                ball.radius = mergedRadius;
-                balls[j].radius = mergedRadius;
-            }
-        }
-
-        ctx.beginPath();
-        ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-        ctx.fillStyle = '#00f2ff';
-        ctx.fill();
-        ctx.closePath();
+    stars.forEach((star) => {
+        star.update();
+        star.draw();
     });
-
-    butterflies.forEach((butterfly) => {
-        butterfly.index = (butterfly.index + 1) % butterfly.path.length;
-        butterfly.x = butterfly.path[butterfly.index].x;
-        butterfly.y = butterfly.path[butterfly.index].y;
-
-        ctx.beginPath();
-        ctx.arc(butterfly.x, butterfly.y, 5, 0, Math.PI * 2);
-        ctx.fillStyle = butterfly.color;
-        ctx.fill();
-        ctx.shadowBlur = 20;
-        ctx.shadowColor = butterfly.color;
-        ctx.closePath();
-    });
-
-    requestAnimationFrame(update);
+    requestAnimationFrame(animateStars);
 }
 
-window.addEventListener('resize', () => {
+animateStars();
+
+window.addEventListener("resize", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    stars = [];
+    for (let i = 0; i < numStars; i++) {
+        stars.push(new Star());
+    }
 });
 
-createBalls();
-createButterflies();
-update();
+const buttons = document.querySelectorAll(".futuristic-btn");
+
+buttons.forEach((btn) => {
+    btn.addEventListener("mousemove", (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        btn.style.transform = `translate(${(x - rect.width / 2) * 0.1}px, ${(y - rect.height / 2) * 0.1}px)`;
+    });
+
+    btn.addEventListener("mouseleave", () => {
+        btn.style.transform = "translate(0px, 0px)";
+    });
+});
