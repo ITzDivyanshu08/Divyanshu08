@@ -1,25 +1,18 @@
-const canvas = document.getElementById("starCanvas");
+const canvas = document.getElementById("particleCanvas");
 const ctx = canvas.getContext("2d");
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let stars = [];
-const numStars = 200;
+const particles = [];
 
-class Star {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.radius = Math.random() * 2;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
-    }
-
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "#00c3ff";
-        ctx.fill();
+class Particle {
+    constructor(x, y, size, speedX, speedY) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.speedX = speedX;
+        this.speedY = speedY;
     }
 
     update() {
@@ -29,44 +22,47 @@ class Star {
         if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
         if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
     }
+
+    draw() {
+        ctx.fillStyle = "rgba(0, 255, 255, 0.8)";
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = "cyan";
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fill();
+    }
 }
 
-for (let i = 0; i < numStars; i++) {
-    stars.push(new Star());
+// Initialize Particles
+function initParticles() {
+    for (let i = 0; i < 60; i++) {
+        let size = Math.random() * 4 + 1;
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+        let speedX = (Math.random() - 0.5) * 1.5;
+        let speedY = (Math.random() - 0.5) * 1.5;
+        particles.push(new Particle(x, y, size, speedX, speedY));
+    }
 }
 
-function animateStars() {
+// Animate Particles
+function animateParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    stars.forEach((star) => {
-        star.update();
-        star.draw();
+    particles.forEach(particle => {
+        particle.update();
+        particle.draw();
     });
-    requestAnimationFrame(animateStars);
+    requestAnimationFrame(animateParticles);
 }
 
-animateStars();
-
+// Resize Canvas on Window Resize
 window.addEventListener("resize", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    stars = [];
-    for (let i = 0; i < numStars; i++) {
-        stars.push(new Star());
-    }
+    particles.length = 0;
+    initParticles();
 });
 
-const buttons = document.querySelectorAll(".futuristic-btn");
-
-buttons.forEach((btn) => {
-    btn.addEventListener("mousemove", (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        btn.style.transform = `translate(${(x - rect.width / 2) * 0.1}px, ${(y - rect.height / 2) * 0.1}px)`;
-    });
-
-    btn.addEventListener("mouseleave", () => {
-        btn.style.transform = "translate(0px, 0px)";
-    });
-});
+initParticles();
+animateParticles();
