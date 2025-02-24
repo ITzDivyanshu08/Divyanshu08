@@ -1,78 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Arial', sans-serif;
 }
 
 body {
-    background: black;
+    background: radial-gradient(circle, #001f3f, #000a1f);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     overflow: hidden;
+    position: relative;
 }
 
-.background-animation {
+.background {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: radial-gradient(circle, rgba(0, 0, 50, 0.9), black);
+    width: 100%;
+    height: 100%;
     z-index: -1;
-    animation: backgroundFlow 10s infinite alternate ease-in-out;
-}
-
-@keyframes backgroundFlow {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.05); }
 }
 
 h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-top: 50px;
-    color: #00aaff;
-    text-shadow: 0px 0px 20px rgba(0, 170, 255, 0.8);
+    font-size: 3rem;
+    background: linear-gradient(to right, #4A00E0, #00A1FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 2s infinite alternate;
 }
 
-.button-container {
+@keyframes glow {
+    0% { text-shadow: 0 0 10px #4A00E0; }
+    100% { text-shadow: 0 0 20px #00A1FF; }
+}
+
+.buttons {
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
+    gap: 20px;
 }
 
-.futuristic-button {
+.btn {
     display: inline-block;
-    width: 280px;
-    padding: 15px;
-    text-align: center;
-    text-decoration: none;
+    padding: 15px 30px;
     font-size: 1.2rem;
     font-weight: bold;
-    margin: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
     color: white;
-    background: linear-gradient(135deg, #001f4d, #003366);
-    border: 3px solid #00aaff;
-    border-radius: 0px;
-    box-shadow: 0 0 20px rgba(0, 170, 255, 0.7);
-    transition: all 0.3s ease-in-out;
+    background: linear-gradient(to right, #4A00E0, #00A1FF);
+    border: none;
+    border-radius: 0;
+    transition: transform 0.2s, background 0.3s;
     position: relative;
     overflow: hidden;
+    text-align: center;
 }
 
-.futuristic-button:hover {
+.btn:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 40px rgba(0, 170, 255, 1);
-    background: linear-gradient(135deg, #003366, #001f4d);
+    background: linear-gradient(to right, #6A00E0, #00234F);
 }
 
 footer {
-    text-align: center;
-    color: white;
     position: absolute;
     bottom: 10px;
-    width: 100%;
     font-size: 1rem;
+    color: #aaa;
 }
